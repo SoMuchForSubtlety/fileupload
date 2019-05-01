@@ -12,15 +12,16 @@ import (
 	"strings"
 )
 
-// Upload takes the path to a file and uploads that file to a file host.
+var hosts = []string{"https://0x0.st", "https://uguu.se/api.php?d=upload-tool"}
+
+// UploadFile takes a file and uploads that file to a file host.
 // It returns the url to the uploaded file as a string and any error encountered.
-func Upload(path string) (string, error) {
-	hosts := []string{"https://0x0.st", "https://uguu.se/api.php?d=upload-tool"}
+func UploadFile(file *os.File) (string, error) {
 	var err error
 	var result string
 
 	for _, host := range hosts {
-		result, err = UploadToHost(host, path)
+		result, err = UploadToHost(host, file)
 		if err == nil {
 			break
 		}
@@ -31,16 +32,10 @@ func Upload(path string) (string, error) {
 	return result, nil
 }
 
-// UploadToHost takes a url and a filepath as strings.
-// It will upload the file at the filepath to the provided url with HTTP POST.
+// UploadToHost takes a url and a file as arguments and uploads the file to the provided url with HTTP POST.
 // It returns the url to the uploaded file as a string and any error encountered.
-func UploadToHost(url string, path string) (string, error) {
+func UploadToHost(url string, file *os.File) (string, error) {
 	var err error
-
-	file, err := os.Open(path)
-	if err != nil {
-		return "", err
-	}
 
 	values := map[string]io.Reader{
 		"file": file,
