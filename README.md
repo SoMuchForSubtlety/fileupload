@@ -1,4 +1,7 @@
+[![Godoc Reference](https://img.shields.io/badge/godoc-reference-blue.svg)](https://godoc.org/github.com/SoMuchForSubtlety/fileupload)
+[![Go Report](https://img.shields.io/badge/go%20report-A%2B-brightgreen.svg)](https://goreportcard.com/report/github.com/SoMuchForSubtlety/fileupload)
+
 # fileupload
-A very simple go package to upload files to temporary file hosts like https://0x0.st/
+This go package provides an easy way to upload files to temporary file hosts like https://0x0.st/
 
 [Link to godoc](https://godoc.org/github.com/SoMuchForSubtlety/fileupload)
